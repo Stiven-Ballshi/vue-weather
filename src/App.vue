@@ -1,28 +1,29 @@
 <template>
-  <div id="app" :class="weather.main && weather.main.temp > 16 ? 'warm' : ''"  >
-    <main>
-      <div class="search-box">
-        <input 
-          type="text" 
-          class="search-bar" 
-          placeholder="Search ..."
-          v-model="query"
-          @keypress.enter="fetchWeather"
-          />
-      </div>
-
-      <div class="weather-wrap" v-if="weather.main">
-        <div class="location-box">
-          <div class="location">{{ weather.name }}, {{ weather.sys.country }}</div>
-          <div class="date">{{ new Date().toLocaleDateString() }}</div>
+  <div class="container" id="app" :class="weather.main && weather.main.temp > 16 ? 'warm' : ''"  >
+      <main>
+        <h1 class="title">Weather App</h1>
+        <div class="search-box">
+          <input 
+            type="text" 
+            class="search-bar" 
+            placeholder="Search by city,country,state ..."
+            v-model="query"
+            @keypress.enter="fetchWeather"
+            />
         </div>
 
-        <div class="weather-box">
-          <div class="temp">{{ Math.round(weather.main.temp) }}°C</div>
-          <div class="weather">{{ weather.weather[0].main }}</div>
+        <div class="weather-wrap" v-if="weather.main">
+          <div class="location-box">
+            <div class="location">{{ weather.name }}, {{ weather.sys.country }}</div>
+            <div class="date">{{ new Date().toLocaleDateString() }}</div>
+          </div>
+
+          <div class="weather-box">
+            <div class="temp">{{ Math.round(weather.main.temp) }}°C</div>
+            <div class="weather">{{ weather.weather[0].main }}</div>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
   </div>
 </template>
 
@@ -88,6 +89,14 @@ main {
   padding:  25px;
   /* width: 100%; */
   background-image: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.75));
+}
+
+.title {
+  text-align: center;
+  padding-bottom: 20px;
+  color: rgb(29, 56, 56);
+  line-height: 3rem;
+  
 }
 
 .search-box {
